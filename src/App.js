@@ -1,12 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
+import TodoList from "./components/TodoList";
 
-function App() {
+const App = () => {
+  const x = "Order Han Quoc";
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello World</p>
+
+        <p>Xin chao {x}</p>
+
+        <TodoList />
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -18,6 +23,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
