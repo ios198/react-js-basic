@@ -1,59 +1,63 @@
 import React, { useState } from "react";
-
+import _ from "lodash";
 const TodoList = () => {
-  const [name, setName] = useState();
-  const handleClickBt = (event, mgs) => {
-    console.log(">>run handleClickBt function", mgs);
+  const [todo, setTodo] = useState("");
+  const [listTodo, setListTodo] = useState([
+    { id: "todo1", name: "watching youtube" },
+    { id: "todo2", name: "using facebook" },
+    { id: "todo3", name: "reading book" },
+  ]);
+
+  const randomIniFromInterval = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
+  const handleDeleteTodo = (id) => {
+    let currentTodoList = _.clone(listTodo);
+    currentTodoList = currentTodoList.filter((item) => item.id !== id);
+    setListTodo(currentTodoList);
+  };
+  console.log(">>> check data", listTodo);
+  const handleClickBt = () => {
+    let todoID = randomIniFromInterval(4, 999999999999);
+    let todoItem = {
+      id: `todo${todoID}`,
+      name: todo,
+    };
+    let currentTodoList = _.clone(listTodo);
+    currentTodoList.push(todoItem);
+    setListTodo(currentTodoList);
+    console.log("---> list", listTodo);
   };
   return (
     <div>
-      <label>Name: </label>
+      <label>Todo's Name: </label>
       <input
-        value={name}
+        value={todo}
         type="text"
         onChange={(event) => {
-          //console.log("check event", event);
-          setName(event.target.value);
+          console.log(">>> --- check event input", event);
+          setTodo(event.target.value);
         }}
       />
-      <button
-        type="submit"
-        onClick={(event) => {
-          console.log("check event", event);
-          handleClickBt(event, "buttonClick");
-        }}
-      >
+      <button type="submit" onClick={() => handleClickBt()}>
         Submit
       </button>
       <br />
       <br />
-      Hello Todo List with the name: {name}
+      <div>----- List todo: -----</div>
+      {listTodo.map((item, index) => {
+        return (
+          <div
+            id={item.id}
+            key={item.id}
+            onClick={() => handleDeleteTodo(item.id)}
+          >
+            {item.name}
+          </div>
+        );
+      })}
     </div>
   );
 };
-
-/*
-class TodoList extends React.Component {
-  //Khai baos sate
-  state = {
-    name: "Quan",
-    channel: "Hoi dan IT",
-  };
-  // gan lai gia tri cho state
-  render() {
-    return (
-      <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          onChange={(event) => this.setState({ name: event.target.value })}
-        />
-        <br />
-        <br />
-        Hello Todo List with the name = {this.state.name}
-      </div>
-    );
-  }
-}
-*/
 export default TodoList;

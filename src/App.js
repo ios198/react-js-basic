@@ -3,7 +3,7 @@ import "./App.css";
 import TodoList from "./components/TodoList";
 
 const App = () => {
-  const x = "Order Han Quoc";
+  const x = "Quan";
   return (
     <div className="App">
       <header className="App-header">
