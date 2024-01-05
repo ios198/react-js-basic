@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import _ from "lodash";
-const TodoList = () => {
+import AddTodo from "./AddTodo";
+import DisplayTodo from "./DisplayTodo";
+
+const Home = () => {
   const [todo, setTodo] = useState("");
   const [listTodo, setListTodo] = useState([
     { id: "todo1", name: "watching youtube" },
@@ -17,8 +20,14 @@ const TodoList = () => {
     currentTodoList = currentTodoList.filter((item) => item.id !== id);
     setListTodo(currentTodoList);
   };
+
   console.log(">>> check data", listTodo);
+
   const handleClickBt = () => {
+    if (!todo) {
+      alert("Todo's name is not empty");
+      return;
+    }
     let todoID = randomIniFromInterval(4, 999999999999);
     let todoItem = {
       id: `todo${todoID}`,
@@ -27,37 +36,14 @@ const TodoList = () => {
     let currentTodoList = _.clone(listTodo);
     currentTodoList.push(todoItem);
     setListTodo(currentTodoList);
-    console.log("---> list", listTodo);
+    setTodo("");
   };
+
   return (
     <div>
-      <label>Todo's Name: </label>
-      <input
-        value={todo}
-        type="text"
-        onChange={(event) => {
-          console.log(">>> --- check event input", event);
-          setTodo(event.target.value);
-        }}
-      />
-      <button type="submit" onClick={() => handleClickBt()}>
-        Submit
-      </button>
-      <br />
-      <br />
-      <div>----- List todo: -----</div>
-      {listTodo.map((item, index) => {
-        return (
-          <div
-            id={item.id}
-            key={item.id}
-            onClick={() => handleDeleteTodo(item.id)}
-          >
-            {item.name}
-          </div>
-        );
-      })}
+      <AddTodo todo={todo} setTodo={setTodo} handleClickBt={handleClickBt} />
+      <DisplayTodo listTodo={listTodo} handleDeleteTodo={handleDeleteTodo} />
     </div>
   );
 };
-export default TodoList;
+export default Home;

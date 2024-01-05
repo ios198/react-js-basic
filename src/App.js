@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import TodoList from "./components/TodoList";
+import Home from "./components/Home";
 
 const App = () => {
   const x = "Quan";
@@ -11,7 +11,7 @@ const App = () => {
 
         <p>Xin chao {x}</p>
 
-        <TodoList />
+        <Home />
         <a
           className="App-link"
           href="https://reactjs.org"
