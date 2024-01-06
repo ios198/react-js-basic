@@ -10,6 +10,14 @@ const AddNewProduct = () => {
 
   const handleClickBtn = () => {
     let object = { name, price, size, color };
+    let productList = localStorage.getItem("productList");
+    if (productList) {
+      let arr = JSON.parse(productList);
+      arr.push(object);
+      localStorage.setItem("productList", JSON.stringify(arr));
+    } else {
+      localStorage.setItem("productList", JSON.stringify([object]));
+    }
     setName("");
     setPrice(0);
     setSize(0);
@@ -82,6 +90,10 @@ const AddNewProduct = () => {
           Show this form
         </div>
       )}
+      <div>
+        List product:
+        <div>Name: JSON.parse({localStorage.getItem("productList")}).name</div>
+      </div>
     </div>
   );
 };
