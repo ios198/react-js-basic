@@ -62,7 +62,7 @@
   border: none;
 }
 
-button{
+button .showhide{
   cursor: pointer;
   margin-left: 5px;
   margin-top: 10px;
