@@ -6,7 +6,7 @@ const AddNewProduct = () => {
   const [size, setSize] = useState(0);
   const [color, setColor] = useState("");
 
-  const [isShowDetail, setShowDetail] = useState(true);
+  const [isShowDetail, setShowDetail] = useState(false);
 
   const handleClickBtn = () => {
     let object = { name, price, size, color };

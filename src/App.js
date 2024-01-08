@@ -2,6 +2,8 @@ import logo from "./logo.svg";
 import "./App.scss";
 import Home from "./components/Home";
 import AddNewProduct from "./components/AddNewProduct";
+import Product from "./components/Products/Product";
+import "react-image-lightbox/style.css";
 const App = () => {
   const x = "Quan";
   return (
@@ -10,11 +12,15 @@ const App = () => {
         <div style={{ textAlign: "center" }}>
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-        <p>Xin chao {x}</p>
+        <p>
+          <span>Xin chao {x}</span>
+        </p>
         <Home />
       </header>
       <div className="content-right">
         <AddNewProduct />
+        <hr />
+        <Product />
       </div>
     </div>
   );
