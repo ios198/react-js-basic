@@ -6,6 +6,9 @@ import Product from "./components/Products/Product";
 import "react-image-lightbox/style.css";
 import Nav from "./components/Navigation/Nav";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Weather from "./components/Weather/Weather";
+import GenerateOTP from "./components/OTP/GenerateOTP";
+import OTP from "./components/OTP/OTP";
 
 const App = () => {
   const x = "Quan";
@@ -35,7 +38,10 @@ const App = () => {
           <Product />
         </Route>
         <Route path="/weather" exact>
-          <div>Weather App</div>
+          <Weather />
+        </Route>
+        <Route path="/otp" exact>
+          <OTP />
         </Route>
         <Route path="/about" exact>
           <div>About</div>
